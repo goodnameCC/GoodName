@@ -69,9 +69,9 @@ static void MX_TIM3_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-  USART_RxCpltHandler(huart);
-}
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+//  USART_RxCpltHandler(huart);
+//}
 
 
 
@@ -150,21 +150,26 @@ int main(void)
 
     //SendVOFA(&uart1,0x00,1);
 
-  if (HAL_GetTick()>=TIME) {
-    TIME=TIME+10;
+  //if (HAL_GetTick()>=TIME) {
+  //  TIME=TIME+10;
+  //
+  //  CNT=__HAL_TIM_GET_COUNTER(&htim2);
+  //
+  //
+  //  Send=(float)CNT/1330*360;
+  //
+  //  speed=(Send-Send_t)/0.01;
+  //
+  //  SendVOFA(&uart1,&speed,1);
+  //
+  //  Send_t=Send;
+  //}
 
-    CNT=__HAL_TIM_GET_COUNTER(&htim2);
-
-
-    Send=(float)CNT/1330*360;
-
-    speed=(Send-Send_t)/0.01;
-
-    SendVOFA(&uart1,&speed,1);
-
-    Send_t=Send;
-  }
-
+    int a=USART_ReadByte(&uart1);
+    if (a>0) {
+      uint8_t send=a;
+      USART_Send(&uart1,&send,1);
+    }
 
 
     /* USER CODE END WHILE */

@@ -1,0 +1,19 @@
+.idea/
+
+# 编译输出目录（你的截图底部显示编译目录在 build/Debug，所以必须忽略 build）
+build/
+cmake-build-*/
+Debug/
+Release/
+
+# 编译生成的中间文件
+*.elf
+*.hex
+*.bin
+*.map
+*.o
+*.d
+
+# 系统文件
+.DS_Store
+Thumbs.db
